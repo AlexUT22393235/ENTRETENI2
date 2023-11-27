@@ -1,0 +1,195 @@
+/* Estilos para la barra de navegación */
+.navbar {
+  background-color: rgb(3, 37, 65);
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  height: 65px;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-container img {
+  max-width: 100px;
+  margin-right: 20px; /* Margen reducido para una alineación más cercana */
+  height: 60px;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.search-input {
+  margin-right: 30px; /* Márgenes ajustados para una alineación más cercana */
+  padding: 10px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  width: 200px;
+}
+
+.search-icon {
+  margin-right: 10px;
+  color: #ccc;
+  font-size: 20px;
+}
+
+/* Estilos para el nombre de usuario */
+.user-name {
+  cursor: pointer;
+  margin-right: 0; /* Sin margen a la derecha para una alineación más cercana */
+  color: #007bff;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.logout-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilos para el botón de cerrar sesión */
+.logout-button {
+  background: none;
+  color: #dc3545;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px; /* Ajusta el margen superior según tus necesidades */
+  font-size: 14px; /* Ajusta el tamaño de la fuente según tus necesidades */
+}
+
+.logout-button:hover {
+  color: #a80000;
+}
+
+
+/* Estilos para el botón de inicio de sesión */
+.login-button {
+  background: none;
+  color: #5494be;
+  border: none;
+  cursor: pointer;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.login-button i {
+  font-size: 40px;
+}
+
+.movie-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  }
+
+.movie-card {
+  width: 18%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+}
+
+.movie-card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+h2 {
+color: #000;
+}
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-dropdown-label {
+  cursor: pointer;
+  background-color: #3185FC;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.custom-dropdown-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.custom-dropdown-content li {
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.custom-dropdown:hover .custom-dropdown-label {
+  background-color: rgb(3,37,65);
+}
+
+.custom-button {
+  background-color: transparent;
+  color: #ffffff;
+  padding: 10px 15px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  margin-right: 60px;
+  transition: color 0.3s;
+}
+
+.custom-button:hover {
+  color: #4491d5;
+}
+
+.custom-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  min-width: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  animation: fadeIn 0.3s ease;
+}
+
+.custom-dropdown:hover .custom-dropdown-content {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.user-name {
+  cursor: pointer;
+  margin-right: 10px; /* Ajusta el margen según tus necesidades */
+  color: #007bff; /* Puedes cambiar el color según tu preferencia */
+  font-weight: bold;
+}

@@ -1,0 +1,74 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* Permitir que las tarjetas se envuelvan en nuevas líneas */
+  margin-left: 60px;
+}
+
+/* Estilo de la tarjeta */
+.card {
+  width: 18%;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  padding: 10px;
+  position: relative;
+  margin-right: 23px
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.card h3 {
+  color: #000;
+  margin-top: 10px;
+}
+
+div h2{
+  color: rgb(3, 46, 86);
+  margin-left: 80px;
+}
+
+div h1{
+  color: rgb(3, 46, 86);
+  margin-left: 80px;
+}
+
+button {
+  background-color: #007bff; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  border: none; /* Eliminar el borde del botón */
+  padding: 10px 15px; /* Espaciado interno del botón */
+  border-radius: 5px; /* Borde redondeado */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+  margin-right: 10px; /* Margen derecho para separar los botones */
+}
+
+/* Estilo para el botón "Mostrar más" de películas */
+.mostrarMasPeliculas {
+  background-color: #28a745; /* Color verde */
+}
+
+/* Estilo para el botón "Mostrar menos" de películas */
+.mostrarMenosPeliculas {
+  background-color: #dc3545; /* Color rojo */
+}
+
+/* Estilo para el botón "Mostrar más" de series */
+.mostrarMasSeries {
+  background-color: #007bff; /* Color azul */
+}
+
+/* Estilo para el botón "Mostrar menos" de series */
+.mostrarMenosSeries {
+  background-color: #dc3545; /* Color rojo */
+}
+
+.recomendacion {
+  padding: 40px; /* Puedes ajustar este valor según tus preferencias */
+  font-size: x-large;
+}
+

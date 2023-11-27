@@ -1,0 +1,70 @@
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 800px;
+  background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/dace47b4-a5cb-4368-80fe-c26f3e77d540/0fba9989-bbf6-4bd9-907d-3fcd16bcf168/MX-es-20231023-popsignuptwoweeks-perspective_alpha_website_large.jpg);
+}
+
+.register-card {
+  background-color: rgba(208, 216, 216, 0.717);
+  padding: 100px;
+  border: 1px solid #1a818a54;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.register-container h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: rgb(3, 37, 65);
+}
+
+.register-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-container input {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.register-container p {
+  color: #000000;
+}
+
+.register-container h2 {
+  color: #004a98;
+}
+
+.register-container button {
+  background-color: #3498db;
+  color: #fff;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+}
+
+.register-container button:hover {
+  background-color: #9DACE8;
+  transform: scale(1.05);
+}
+
+/* Estilo para el enlace de inicio de sesión */
+.register-container a {
+  color: #3498db;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.register-container a:hover {
+  color: #9DACE8;
+}

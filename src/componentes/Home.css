@@ -1,0 +1,369 @@
+/* Estilos para el carrusel */
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-image: url('https://img.freepik.com/fotos-premium/foto-fondo-degradado-suave-degradado-cuadrado-2-colores-arriba-abajo-degradado-colorido_873925-69907.jpg');
+}
+
+.custom-carousel {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin: 10px 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.3s;
+}
+
+.carousel-item {
+  min-width: calc(100% / 6);
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.6s;
+  position: relative;
+}
+
+.carousel-item img {
+  max-width: 80%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.user-rating-circle {
+  width: 40px;
+  height: 40px;
+  background-color: #0074d9;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  transform-origin: center center;
+}
+
+.carousel-caption {
+  border-radius: 12px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.carousel-item.active .carousel-caption {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+
+/* Estilos para la sección de tendencias */
+.trending-section {
+  margin-top: 20px;
+}
+
+.trending-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.trending-buttons-container {
+  padding: 1px;
+  border-radius: 40px;
+  border: 2px solid rgba(3, 62, 118, 0.959);
+  margin-right: 840px;
+  display: flex;
+}
+
+.trending-time-button {
+  background-color: transparent;
+  color: rgba(3, 62, 118, 0.959);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-right: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.trending-time-button.active {
+  background-color: rgba(3, 62, 118, 0.959);
+  color: rgb(4, 215, 243);
+}
+
+.trending-carousel {
+  display: flex;
+  align-items: center;
+}
+
+.trending-movies {
+  display: flex;
+  overflow: hidden;
+}
+
+.trending-movie {
+  width: 18%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.trending-movie img.trending-movie-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.trending-movie h3 {
+  color-scheme: rgba(3, 62, 118, 0.959);
+  margin-top: 10px;
+}
+
+/* Estilos para los botones de navegación en el carrusel de tendencias */
+.trending-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.previous-button,
+.next-button {
+  background-color: rgba(0, 116, 217, 0); /* Inicialmente transparente */
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px; /* Ajusta el tamaño según tu preferencia */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones para el cambio de color de fondo y texto */
+}
+
+.previous-button:hover,
+.next-button:hover {
+  background-color: rgba(22, 225, 222, 0.3); /* Color difuminado al poner el cursor sobre el botón */
+  color: #333; /* Cambia el color del texto al difuminarse */
+}
+
+
+/* Estilos para el carrusel de "Los más populares" */
+/* Estilos para la sección "Los más populares" */
+.popular-section {
+  margin-top: 20px;
+}
+
+.popular-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-buttons-container {
+  padding: 1px;
+  border-radius: 40px;
+  border: 2px solid rgba(3, 62, 118, 0.959);
+  margin-right: 450px;
+  display: flex;
+}
+
+.filter-button {
+  background-color: transparent;
+  color: rgba(3, 62, 118, 0.959);
+  padding: 8px 16px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 17px;
+  margin-right: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-button.active {
+  background-color: rgba(3, 62, 118, 0.959);
+  color:rgb(4, 215, 243);
+}
+
+
+.popular-carousel {
+  display: flex;
+  align-items: center;
+}
+
+.popular-movies {
+  display: flex;
+  overflow: hidden;
+}
+
+.popular-movie {
+  width: 18%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.popular-movie img.popular-movie-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.popular-movie h3 {
+  color: #000;
+  margin-top: 10px;
+}
+
+/* Estilos para los botones de navegación en el carrusel de "Los más populares" */
+.popular-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Estilos para el carrusel "Ver gratis" */
+.free-to-watch-section {
+  margin-top: 20px;
+}
+
+.free-to-watch-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.free-to-watch-buttons-container {
+  padding: 1px;
+  border-radius: 40px;
+  border: 2px solid rgba(3, 62, 118, 0.959);
+  margin-right: 810px;
+  display: flex;
+}
+
+.free-to-watch-button {
+  background-color: transparent;
+  color: rgba(3, 62, 118, 0.959);
+  padding: 8px 17px;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.free-to-watch-button.active {
+  background-color: rgba(3, 62, 118, 0.959);
+  color: rgb(4, 215, 243);
+}
+
+
+.free-to-watch-carousel {
+  display: flex;
+  align-items: center;
+}
+
+.free-to-watch-movies {
+  display: flex;
+  overflow: hidden;
+}
+
+.free-to-watch-movie {
+  width: 18%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  transition: transform 0.3s;
+}
+
+.free-to-watch-movie img.free-to-watch-movie-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.free-to-watch-movie h3 {
+  color: #000;
+  margin-top: 10px;
+}
+
+/* Estilos para los botones de navegación en el carrusel "Ver gratis" */
+.free-to-watch-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.previous-button,
+.next-button {
+  background-color: rgba(0, 116, 217, 0.078); /* Inicialmente transparente */
+  color: #f484841a;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 24px; /* Ajusta el tamaño según tu preferencia */
+  transition: background-color 0.3s, color 0.3s; /* Transiciones para el cambio de color de fondo y texto */
+}
+
+.previous-button:hover,
+.next-button:hover {
+  background-color: rgba(0, 116, 217, 0.1); /* Color difuminado al poner el cursor sobre el botón */
+  color: #0757d0; /* Cambia el color del texto al difuminarse */
+}
+
+/* Espacio para los títulos de los carruseles */
+.trending-section h2,
+.popular-section h2,
+.free-to-watch-section h2 {
+  margin-left: 80px; /* Ajusta el espacio a tu preferencia */
+}
+
+.trending-section h2,
+.popular-section h2,
+.free-to-watch-section h2 {
+  color: rgb(3, 46, 86); /* Cambia este valor al color que prefieras */
+}

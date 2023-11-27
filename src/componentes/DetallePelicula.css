@@ -1,0 +1,166 @@
+.detalle-pelicula {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(59, 153, 230, 0.395);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.pelicula-imagen {
+  width: 26%;
+  margin-right: 20px;
+}
+
+.pelicula-imagen img {
+  margin-left: 100px;
+  border-radius: 12px;
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pelicula-detalles {
+  margin-left: 180px;
+  flex: 1;
+  text-align: left;
+  margin-right: 0; /* Elimina el margen derecho */
+}
+
+.pelicula-detalles h1 {
+  padding-top: auto;
+  font-size: 24px;
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+h3 {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.trailer-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: -100px; /* Ajusta la posición hacia arriba */
+}
+
+.trailer-btn button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 300px; /* Ajusta la posición hacia la derecha */
+}
+
+.trailer-btn button:hover {
+  background-color: #0056b3;
+}
+
+.reparto {
+  width: 100%;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.reparto h2 {
+  font-size: 20px;
+  text-align: center;
+}
+
+.reparto-imagenes {
+  justify-content: center; 
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reparto-actor {
+  width: calc(13% - 20px);
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reparto-actor img {
+  border-radius: 12px;
+  max-width: 100%;
+  max-height: 150px;
+}
+
+.reparto-actor h4 {
+  color: #716f6f;
+}
+
+.modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1;
+}
+
+.modal-content {
+  position: relative;
+  background-color: #00000042;
+  padding: 20px;
+  border-radius: 12px;
+  width: 80%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar contenido verticalmente */
+  align-items: center; /* Centrar contenido horizontalmente */
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #777;
+}
+
+.close:hover {
+  color: #333;
+}
+
+/* Estilo para el video del trailer */
+iframe {
+  width: 100%; /* Asegura que el video se ajuste al ancho del modal */
+  height: 90%; /* Asegura que el video se ajuste al alto del modal */
+}
+
+.streaming-services {
+  display: flex;
+  flex-direction: column; /* Cambiado a columna para apilar verticalmente */
+  align-items: center;
+  position: absolute;
+  top: 390px; /* Ajusta la posición vertical según tus preferencias */
+  right: 130px; /* Ajusta la posición horizontal según tus preferencias */
+}
+
+.streaming-services h5 {
+  margin-bottom: 10px; /* Agrega espacio entre "Disponible en:" y los logos */
+}
+
+.streaming-services a img {
+  border-radius: 50%; /* Hace que la imagen sea redondeada */
+  width: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
+  height: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
+}
