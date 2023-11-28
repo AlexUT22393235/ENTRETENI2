@@ -9,6 +9,12 @@ import 'firebase/compat/auth';
 import PreferencesModal from './PreferencesModal';
 
 
+// function mostrarModal(){
+//   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
+  
+// }
+
+
 function Navbar() {
   const [user, setUser] = useState(null);
   const [showLogoutButton, setShowLogoutButton] = useState(false);
@@ -19,7 +25,7 @@ function Navbar() {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
   const navigate = useNavigate();
   const [enterPressed, setEnterPressed] = useState(false);
-  //Para navbar
+  //Para abrir el modal en la navbar
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
 
   useEffect(() => {
@@ -300,5 +306,7 @@ function Navbar() {
     </div>
   );
 }
+
+
 
 export default Navbar;

@@ -1,7 +1,7 @@
 /* Estilos para la barra de navegación */
 .navbar {
   background-color: rgb(3, 37, 65);
-  color: #fff;
+  /* color: #fff; */
   display: flex;
   justify-content: space-between;
   align-items: center;

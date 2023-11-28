@@ -2,6 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { getPreferences, updatePreferences } from './genreUtils.js';
 import useCurrentUser from './useCurrentUser';
 import './PreferencesModal.css';
+import  openPreferencesModal from './Navbar.jsx'
+
+//imports para usar firebase:
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
 
 function PreferencesModal({ onClose, selectedGenres }) {
   // Estado para gestionar las preferencias
@@ -11,7 +16,10 @@ function PreferencesModal({ onClose, selectedGenres }) {
   // Hook para obtener el usuario actual
   const { currentUser, loading } = useCurrentUser();
 
-  
+  // Para ver si el usuario es nuevo:
+  const [isNewUser, setIsNewUser] = useState(false);
+
+
   // Función para aplicar las preferencias y cerrar el modal
   const applyPreferences = async () => {
     // Verificar si se han seleccionado hasta 3 géneros para películas y series
@@ -72,73 +80,110 @@ function PreferencesModal({ onClose, selectedGenres }) {
     // Puedes realizar alguna acción si los géneros seleccionados cambian
   }, [selectedMovieGenres, selectedSeriesGenres]);
 
+
+  //Verificar si el usuario existe en la colección
+  useEffect(() => {
+    const checkIfLoggedInBefore = async () => {
+      try {
+        if (currentUser) {
+          // Consulta la colección de usuarios en Firebase
+          const userSnapshot = await firebase
+            .firestore()
+            .collection('usuarios')  // Ajusta el nombre de tu colección de usuarios
+            .doc(currentUser.uid)
+            .get();
+
+          // Actualiza el estado para indicar si el usuario ha iniciado sesión previamente
+          setIsNewUser(!userSnapshot.exists);
+        }
+      } catch (error) {
+        console.error('Error al verificar si el usuario ha iniciado sesión:', error);
+      }
+    };
+
+    checkIfLoggedInBefore();
+  }, [currentUser]);
+
+  //Si el usuario no ha iniciado sesión, no se muestra el modal
   if (!currentUser) {
     // Si no está autenticado, puedes mostrar un mensaje o redirigir a la página de inicio de sesión
-    return <div>Por favor, inicia sesión para configurar tus preferencias.</div>;
+    return <div></div>;
   }
-  return (
-    <div className="preferences-modal-overlay">
-      <div className="preferences-modal">
-        <div className="preferences-modal-header">
-          <h2>Preferencias</h2>
-          <button onClick={onClose}>&times;</button>
-        </div>
-        <div className="preferences-modal-content">
-          {/* Sección para seleccionar géneros de películas */}
-          <div>
-            <h3 style={{ zIndex: 1200 }}>Géneros de Películas</h3>
-            <div className="genre-selection">
-              {Object.entries({
-                Acción: 'accion',
-                Aventura: 'aventura',
-                'Ciencia Ficción': 'cienciaFiccion',
-                Comedia: 'comedia',
-                Drama: 'drama',
-                Romance: 'romance',
-              }).map(([label, genre]) => (
-                <label key={genre}  className="genre-label">
-                  <input
-                    type="checkbox"
-                    checked={selectedMovieGenres.includes(genre)}
-                    onChange={() => handleMovieGenreToggle(genre)}
-                  />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </div>
 
-          {/* Sección para seleccionar géneros de series */}
-          <div>
-            <h3 style={{ zIndex: 1200 }}>Géneros de Series</h3>
-            <div className="genre-selection">
-              {Object.entries({
-                'Acción y Aventura': 'accionAventura',
-                'Ciencia Ficción': 'cienciaFiccion',
-                Comedia: 'comedia',
-                Crimen: 'crimen',
-                Drama: 'drama',
-              }).map(([label, genre]) => (
-                <label key={genre}>
-                  <input
-                    type="checkbox"
-                    checked={selectedSeriesGenres.includes(genre)}
-                    onChange={() => handleSeriesGenreToggle(genre)}
-                  />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </div>
+  //Si el usuario no es nuevo usuario, no se muestra nada
+  if (!isNewUser){
+    return null;
+  }
 
-          {/* Botón para aplicar preferencias */}
-          <button className="apply-button" onClick={applyPreferences}>
-            Aplicar
-          </button>
+  //Si el usuario es nuevo o usa openPreferencesModal se muestra el modal
+  if (isNewUser || openPreferencesModal){
+    return (
+      <div className="preferences-modal-overlay">
+        <div className="preferences-modal">
+          <div className="preferences-modal-header">
+            <h2>Preferencias</h2>
+            <button onClick={onClose}>&times;</button>
+          </div>
+          <div className="preferences-modal-content">
+            {/* Sección para seleccionar géneros de películas */}
+            <div>
+              <h3>Géneros de Películas</h3>
+              <div className="genre-selection">
+                {Object.entries({
+                  Acción: 'accion',
+                  Aventura: 'aventura',
+                  'Ciencia Ficción': 'cienciaFiccion',
+                  Comedia: 'comedia',
+                  Drama: 'drama',
+                  Romance: 'romance',
+                }).map(([label, genre]) => (
+                  <label key={genre}  className="genre-label">
+                    <input
+                      type="checkbox"
+                      checked={selectedMovieGenres.includes(genre)}
+                      onChange={() => handleMovieGenreToggle(genre)}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </div>
+  
+            {/* Sección para seleccionar géneros de series */}
+            <div>
+              <h3 style={{ zIndex: 1200 }}>Géneros de Series</h3>
+              <div className="genre-selection">
+                {Object.entries({
+                  'Acción y Aventura': 'accionAventura',
+                  'Ciencia Ficción': 'cienciaFiccion',
+                  Comedia: 'comedia',
+                  Crimen: 'crimen',
+                  Drama: 'drama',
+                }).map(([label, genre]) => (
+                  <label key={genre}>
+                    <input
+                      type="checkbox"
+                      checked={selectedSeriesGenres.includes(genre)}
+                      onChange={() => handleSeriesGenreToggle(genre)}
+                    />
+                    {label}
+                  </label>
+                ))}
+              </div>
+            </div>
+  
+            {/* Botón para aplicar preferencias */}
+            <button className="apply-button" onClick={applyPreferences}>
+              Aplicar
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+  }
+  
+  
 }
 
 export default PreferencesModal;

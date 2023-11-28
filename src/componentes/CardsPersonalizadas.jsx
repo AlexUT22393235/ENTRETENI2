@@ -181,6 +181,8 @@ const CardsPersonalizadas = () => {
         // Si no está autenticado, puedes mostrar un mensaje o redirigir a la página de inicio de sesión
         return <div className='recomendacion'><h1>Por favor, inicia sesión para ver contenido personalizado.</h1></div>;
       }
+    
+    
     return (
         <div>
             <div>
