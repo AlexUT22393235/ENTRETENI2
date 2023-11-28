@@ -47,6 +47,24 @@ button {
   margin-right: 10px; /* Margen derecho para separar los botones */
 }
 
+/* Estilo para el botón "Mostrar más" y "Mostrar menos" de películas y series */
+.mostrarMasPeliculas,
+.mostrarMenosPeliculas,
+.mostrarMasSeries,
+.mostrarMenosSeries {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  height: 40px; /* Puedes ajustar la altura según tus necesidades */
+  color: #fff; /* Color del texto */
+  font-weight: bold; /* Puedes ajustar el peso de la fuente según tus necesidades */
+  text-decoration: none; /* Quita la decoración del texto si es un enlace */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  border: none; /* Quita el borde */
+  border-radius: 5px; /* Ajusta el radio de borde según tus necesidades */
+  margin-left: 575px; /* Ajusta el margen según tus necesidades */
+}
+
 /* Estilo para el botón "Mostrar más" de películas */
 .mostrarMasPeliculas {
   background-color: #28a745; /* Color verde */
@@ -66,6 +84,7 @@ button {
 .mostrarMenosSeries {
   background-color: #dc3545; /* Color rojo */
 }
+
 
 .recomendacion {
   padding: 40px; /* Puedes ajustar este valor según tus preferencias */

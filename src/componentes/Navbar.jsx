@@ -110,179 +110,194 @@ function Navbar() {
 
   return (
     <div>
-      
-    <nav className="navbar">
-      <div className="navbar-container">
-        <div className="navbar-left">
-          <div className='logo'>
-            <Link to="/">
-              <img src={logoImage} alt="logo" />
-            </Link>
-          </div>
-          <div className="custom-dropdown">
-            <Link to="/Peliculas">
-              <span className="custom-dropdown-label custom-button">Peliculas ⌵</span>
-            </Link>
+
+      <nav className="navbar">
+        <div className="navbar-container">
+          <div className="navbar-left">
+            <div className='logo'>
+              <Link to="/">
+                <img src={logoImage} alt="logo" />
+              </Link>
+            </div>
+            <div className="custom-dropdown">
+              <Link to="/Peliculas">
+                <span className="custom-dropdown-label custom-button">Películas</span>
+              </Link>
+              <div className="custom-dropdown-content">
+                <ul>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Acción')}>
+                    <Link to="/ActionMovies">
+                      <span className="custom-button">Acción</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Aventura')}
+                  >
+                    <Link to="/AdventureMovies">
+                      <span className="custom-button">Aventura</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Ciencia Ficción')}
+                  >
+                    <Link to="/SciFiMovies">
+                      <span className="custom-button">Ficción</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Comedia')}
+                  >
+                    <Link to="/ComedyMovies">
+                      <span className="custom-button">Comedia</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Drama')}
+                  >
+                    <Link to="/DramaMovies">
+                      <span className="custom-button">Drama</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Romance')}
+                  >
+                    <Link to="/RomanceMovies">
+                      <span className="custom-button">Romance</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="custom-dropdown">
+              <Link to='/Series'>
+                <span className="custom-dropdown-label custom-button">Series</span>
+              </Link>
+              <div className="custom-dropdown-content">
+                <ul>
+                  <li
+                    className="custom-button"
+                    onMouseEnter={() => setSelectedCategory('Series Acción')}
+                  >
+                    <Link to="/ActionSeries">
+                      <span className="custom-button">Aventuras</span>
+                    </Link>
+                  </li>
+
+                  <li
+                    className="custom-button"
+                    onMouseEnter={() => setSelectedCategory('Series Ciencia Ficción')}
+                  >
+                    <Link to="/SciFiSeries">
+                      <span className="custom-button">Ficción</span>
+                    </Link>
+                  </li>
+                  <li
+                    className="custom-button"
+                    onMouseEnter={() => setSelectedCategory('Series Comedia')}
+                  >
+                    <Link to="/ComedySeries">
+                      <span className="custom-button">Comedia</span>
+                    </Link>
+                  </li>
+                  <li
+                    className="custom-button"
+                    onMouseEnter={() => setSelectedCategory('Series Drama')}
+                  >
+                    <Link to="/DramaSeries">
+                      <span className="custom-button">Drama</span>
+                    </Link>
+                  </li>
+                  <li
+                    className="custom-button"
+                    onMouseEnter={() => setSelectedCategory('Series Romance')}
+                  >
+                    <Link to="/CrimenSeries">
+                      <span className="custom-button">Crimen</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="custom-dropdown">
+              <span className="custom-dropdown-label custom-button">Extras</span>
             <div className="custom-dropdown-content">
               <ul>
                 <li
                   onMouseEnter={() => setSelectedCategory('Peliculas Acción')}>
-                  <Link to="/ActionMovies">
-                    <span className="custom-button">Accion</span>
+                  <Link to="/Musica">
+                    <span className="custom-button">Música</span>
                   </Link>
                 </li>
                 <li
                   onMouseEnter={() => setSelectedCategory('Peliculas Aventura')}
                 >
-                  <Link to="/AdventureMovies">
-                    <span className="custom-button">Aventura</span>
-                  </Link>
-                </li>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Ciencia Ficción')}
-                >
-                  <Link to="/SciFiMovies">
-                    <span className="custom-button">Ciencia Ficcion</span>
-                  </Link>
-                </li>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Comedia')}
-                >
-                  <Link to="/ComedyMovies">
-                    <span className="custom-button">Comedia</span>
-                  </Link>
-                </li>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Drama')}
-                >
-                  <Link to="/DramaMovies">
-                    <span className="custom-button">Drama</span>
-                  </Link>
-                </li>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Romance')}
-                >
-                  <Link to="/RomanceMovies">
-                    <span className="custom-button">Romance</span>
+                  <Link to="/Libros">
+                    <span className="custom-button">Libros</span>
                   </Link>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="custom-dropdown">
-            <Link to='/Series'>
-              <span className="custom-dropdown-label custom-button">Series ⌵</span>
-            </Link>
-            <div className="custom-dropdown-content">
-              <ul>
-                <li
-                  className="custom-button"
-                  onMouseEnter={() => setSelectedCategory('Series Acción')}
-                >
-                  <Link to="/ActionSeries">
-                    <span className="custom-button">Acción y Aventura</span>
-                  </Link>
-                </li>
+          </div>
+          <div className="search-container">
+            <div className="search-input-container">
+              <input
+                className="search-input rounded"
+                type="text"
+                placeholder="Buscar..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
 
-                <li
-                  className="custom-button"
-                  onMouseEnter={() => setSelectedCategory('Series Ciencia Ficción')}
-                >
-                  <Link to="/SciFiSeries">
-                    <span className="custom-button">Ciencia Ficción</span>
-                  </Link>
-                </li>
-                <li
-                  className="custom-button"
-                  onMouseEnter={() => setSelectedCategory('Series Comedia')}
-                >
-                  <Link to="/ComedySeries">
-                    <span className="custom-button">Comedia</span>
-                  </Link>
-                </li>
-                <li
-                  className="custom-button"
-                  onMouseEnter={() => setSelectedCategory('Series Drama')}
-                >
-                  <Link to="/DramaSeries">
-                    <span className="custom-button">Drama</span>
-                  </Link>
-                </li>
-                <li
-                  className="custom-button"
-                  onMouseEnter={() => setSelectedCategory('Series Romance')}
-                >
-                  <Link to="/CrimenSeries">
-                    <span className="custom-button">Crimen</span>
-                  </Link>
-                </li>
-              </ul>
+              />
+
             </div>
-          </div>
-
-          <div className="custom-dropdown">
-            <Link to='/PeliculasYSeries'>
-              <span className="custom-dropdown-label custom-button">Peliculas y Series</span>
-            </Link>
-          </div>
-        </div>
-        <div className="search-container">
-          <div className="search-input-container">
-            <input
-              className="search-input rounded"
-              type="text"
-              placeholder="Buscar..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyDown={handleKeyDown}
-
-            />
-
-          </div>
-          {user ? (
-            <div className="user-info">
-              <span className="user-name" onClick={handleUserNameClick}>
-                {user.displayName}
-              </span>
-              <div className="logout-container">
-                {showLogoutButton && (
-                  <button className="logout-button" onClick={handleLogout}>
-                    Cerrar sesión
-                  </button>
-                )}
+            {user ? (
+              <div className="user-info">
+                <span className="user-name" onClick={handleUserNameClick}>
+                  {user.displayName}
+                </span>
+                <div className="logout-container">
+                  {showLogoutButton && (
+                    <button className="logout-button" onClick={handleLogout}>
+                      Cerrar sesión
+                    </button>
+                  )}
+                </div>
               </div>
-            </div>
-          ) : (
-            <Link to="/login">
-              <button className="login-button">
-                <i className="bi bi-person-circle"></i>
+            ) : (
+              <Link to="/login">
+                <button className="login-button">
+                  <i className="bi bi-person-circle"></i>
+                </button>
+              </Link>
+            )}
+            {user && (
+              <button className="preferences-button" onClick={openPreferencesModal}>
+                Preferencias
               </button>
-            </Link>
-          )}
-          {user && (
-        <button className="preferences-button" onClick={openPreferencesModal}>
-          Preferencias
-        </button>
-      )}
+            )}
 
-      {/* Renderizar el modal si showPreferencesModal es true */}
-      {showPreferencesModal && (
-        <PreferencesModal onClose={() => setShowPreferencesModal(false)} />
-      )}
-           
+            {/* Renderizar el modal si showPreferencesModal es true */}
+            {showPreferencesModal && (
+              <PreferencesModal onClose={() => setShowPreferencesModal(false)} />
+            )}
+
+          </div>
         </div>
+      </nav>
+
+      <div className="movie-cards">
+        {mediaData.map((result) => (
+          <div key={result.id} className="movie-card" onClick={() => handleMediaClick(result.id, result)}>
+            <h2>{result.title || result.name}</h2>
+            <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
+          </div>
+        ))}
       </div>
-    </nav>
-
-    <div className="movie-cards">
-      {mediaData.map((result) => (
-        <div key={result.id} className="movie-card" onClick={() => handleMediaClick(result.id, result)}>
-          <h2>{result.title || result.name}</h2>
-          <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
-        </div>
-      ))}
     </div>
-  </div>
   );
 }
 

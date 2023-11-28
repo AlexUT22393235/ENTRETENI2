@@ -1,4 +1,4 @@
-import { getFirestore, doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Función para obtener las preferencias actuales del usuario
 export const getPreferences = async (userId) => {

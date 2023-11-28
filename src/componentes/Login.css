@@ -15,7 +15,10 @@
 }
 
 .login-container h1 {
-  font-size: 24px;
+  font-size: 27px;
   margin-bottom: 20px;
   color: rgb(3, 37, 65);
+  top: 50%; /* Agregado */
+  left: 50%; /* Agregado */
+  transform: translate(-19%, -0%); /* Agregado */
 }

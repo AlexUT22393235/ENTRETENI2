@@ -30,17 +30,18 @@
 
 /* Estilos para la barra de búsqueda */
 .search-container {
+  border-radius: 100px;
   display: flex;
   align-items: center;
   margin-left: auto;
 }
 
 .search-input {
+  border-radius: 100px;
   margin-right: 30px; /* Márgenes ajustados para una alineación más cercana */
   padding: 10px;
   border: none;
   outline: none;
-  border-radius: 20px;
   width: 200px;
 }
 
@@ -48,6 +49,7 @@
   margin-right: 10px;
   color: #ccc;
   font-size: 20px;
+  border-radius: 60px;
 }
 
 /* Estilos para el nombre de usuario */
@@ -141,6 +143,7 @@ color: #000;
 .custom-dropdown-content li {
   color: #fff;
   padding: 10px;
+  text-align: center;
   cursor: pointer;
 }
 

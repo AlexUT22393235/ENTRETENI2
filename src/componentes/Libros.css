@@ -1,0 +1,80 @@
+/* GoogleBooksSearch.css */
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
+    
+    .book-card {
+      width: 30%;
+      margin: 10px;
+      box-sizing: border-box;
+      text-align: center;
+      border-radius: 15px;
+      background-color: #fff;
+      padding: 10px;
+      position: relative;
+    }
+    
+    .book-card img {
+      max-width: 80%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+    
+    /* Estilos para el título en español */
+    .book-card h3 {
+      font-size: 16px;
+      margin: 0;
+      text-align: center;
+    }
+  
+    /* GoogleBooksSearch.css */
+  
+  /* GoogleBooksSearch.css */
+  
+  /* Estilos para el menú desplegable */
+  .genre-select {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    width: 200px; /* Ancho del menú desplegable */
+    margin-right: 10px; /* Espaciado a la derecha */
+  }
+  
+  .genre-select:focus {
+    outline: none; /* Elimina el contorno al enfocar */
+  }
+  
+  .genre-select option {
+    padding: 4px;
+    font-size: 14px;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Estilos para el campo de búsqueda */
+  .search-input {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 300px; /* Ancho del campo de búsqueda */
+    margin-bottom: 15px; /* Espaciado inferior */
+  }
+  
+  .search-input:focus {
+    outline: none; /* Elimina el contorno al enfocar */
+  }
+  
+    
+    
+    @media screen and (max-width: 768px) {
+      .book-card {
+        width: calc(50% - 20px);
+      }
+    }

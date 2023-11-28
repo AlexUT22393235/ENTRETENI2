@@ -3,8 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './componentes/Navbar';
 import Login from './componentes/Login';
 import Home from './componentes/Home';
-import Registro from './componentes/Registro';
-
 import Peliculas from './componentes/Peliculas';
 import Series from './componentes/Series';
 import PeliculasYSeries from './componentes/PeliculasYSeries';
@@ -27,6 +25,10 @@ import ComedySeries from './generos/ComedySeries';
 import DramaSeries from './generos/DramaSeries';
 import CrimeSeries from './generos/CrimenSeries';
 import ResultadosBusqueda from './componentes/Busqueda';
+import DetallesLibros from './componentes/DetallesLibros';
+import GoogleBooksSearch from './componentes/Libros';
+import Musica from './componentes/Musica';
+import DetallesMusica from './componentes/DetallesMusica';
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -42,7 +44,6 @@ function App() {
           <Route path="/Series" element={<Series />} />
           <Route path="/PeliculasYSeries" element={<PeliculasYSeries />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/registro" element={<Registro />} />
           <Route path="/Busqueda" element={<ResultadosBusqueda/>} />
 
           <Route path="/ActionMovies" element={<ActionMovies />} />
@@ -57,12 +58,18 @@ function App() {
           <Route path="/RomanceMovies" element={<RomanceMovies />} />
           <Route path="/CrimenSeries" element={<CrimeSeries />} />
 
+          <Route path="/libro/:bookId" element={<DetallesLibros />} />
+          <Route path="/Musica" element={<Musica />} />
+          <Route path="/Libros" element={<GoogleBooksSearch />} />
+          <Route path="/musica/:album" element={<DetallesMusica />} />
+
           <Route path="/pelicula/:id" element={<DetallePeliculas />} />
           <Route path="/serie/:id" element={<DetalleSeries/>} />
         </Routes>
       </div>
       <Footer/>
     </Router>
+    
   );
 }
 
