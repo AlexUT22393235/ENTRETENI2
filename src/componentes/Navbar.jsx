@@ -6,7 +6,13 @@ import logoImage from '../img/logo.png';
 import './Navbar.css';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import PreferencesModal from './PreferencesModal';
+import PreferencesModalNavbar from './PreferencesModalNavbar';
+// import { MostrarModalLogica } from '../Hooks/MostrarModalLogica';
+
+//Importe para verificación de usuario logeado:
+import useCurrentUser from './useCurrentUser';
+
+import 'firebase/compat/firestore';
 
 
 // function mostrarModal(){
@@ -28,6 +34,16 @@ function Navbar() {
   //Para abrir el modal en la navbar
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
 
+  //Verificación de usuario nuevo:
+  // const [isNewUser, setIsNewUser] = useState(false);
+  const { currentUser, loading } = useCurrentUser();
+
+
+
+  //Hook personalizado para mostrar Modal
+  // const { showPreferencesModal, openModal } = MostrarModalLogica();
+
+
   useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -48,6 +64,30 @@ function Navbar() {
     // Actualizar el estado de 'showLogoutButton' cuando 'user' cambia
     setShowLogoutButton(false); // Restablecer al cerrar sesión
   }, [user]);
+
+
+  //Efecto para verificar si el usuario existe en la colección:
+  // useEffect(() => {
+  //   const checkIfLoggedInBefore = async () => {
+  //     try {
+  //       if (currentUser) {
+  //         // Consulta la colección de usuarios en Firebase
+  //         const userSnapshot = await firebase
+  //           .firestore()
+  //           .collection('usuarios')  // Ajusta el nombre de tu colección de usuarios
+  //           .doc(currentUser.uid)
+  //           .get();
+
+  //         // Actualiza el estado para indicar si el usuario ha iniciado sesión previamente
+  //         setIsNewUser(!userSnapshot.exists);
+  //       }
+  //     } catch (error) {
+  //       console.error('Error al verificar si el usuario ha iniciado sesión:', error);
+  //     }
+  //   };
+
+  //   checkIfLoggedInBefore();
+  // }, [currentUser]);
 
   const handleUserNameClick = () => {
     setShowLogoutButton(!showLogoutButton);
@@ -107,7 +147,7 @@ function Navbar() {
     setMediaData([]);
   };
 
-  //Para mostrar modal:
+  // Para mostrar modal:
   const openPreferencesModal = () => {
     setShowPreferencesModal(true);
   };
@@ -280,7 +320,7 @@ function Navbar() {
                 </button>
               </Link>
             )}
-            {user && (
+                 {user && (
               <button className="preferences-button" onClick={openPreferencesModal}>
                 Preferencias
               </button>
@@ -288,7 +328,7 @@ function Navbar() {
 
             {/* Renderizar el modal si showPreferencesModal es true */}
             {showPreferencesModal && (
-              <PreferencesModal onClose={() => setShowPreferencesModal(false)} />
+              <PreferencesModalNavbar onClose={() => setShowPreferencesModal(false)} />
             )}
 
           </div>
