@@ -58,27 +58,33 @@ function PreferencesModalNavbar({ onClose, selectedGenres }) {
     }
   };
 
-  // Función para manejar la selección/deselección de géneros para películas
-  const handleMovieGenreToggle = (genre) => {
-    if (selectedMovieGenres.includes(genre)) {
-      // Deseleccionar el género si ya está seleccionado
-      setSelectedMovieGenres(selectedMovieGenres.filter((selectedGenre) => selectedGenre !== genre));
-    } else if (selectedMovieGenres.length < 3) {
-      // Seleccionar el género si no se han seleccionado 3 géneros aún
-      setSelectedMovieGenres([...selectedMovieGenres, genre]);
-    }
-  };
+ // Función para manejar la selección/deselección de géneros para películas
+const handleMovieGenreToggle = (genre) => {
+  if (selectedMovieGenres.includes(genre)) {
+    // Deseleccionar el género si ya está seleccionado
+    setSelectedMovieGenres(selectedMovieGenres.filter((selectedGenre) => selectedGenre !== genre));
+  } else if (selectedMovieGenres.length < 3) {
+    // Seleccionar el género si no se han seleccionado 3 géneros aún
+    setSelectedMovieGenres([...selectedMovieGenres, genre]);
+  } else {
+    // Si ya se seleccionaron 3 géneros, eliminar el último y agregar el nuevo
+    setSelectedMovieGenres([...selectedMovieGenres.slice(1), genre]);
+  }
+};
 
-  // Función para manejar la selección/deselección de géneros para series
-  const handleSeriesGenreToggle = (genre) => {
-    if (selectedSeriesGenres.includes(genre)) {
-      // Deseleccionar el género si ya está seleccionado
-      setSelectedSeriesGenres(selectedSeriesGenres.filter((selectedGenre) => selectedGenre !== genre));
-    } else if (selectedSeriesGenres.length < 3) {
-      // Seleccionar el género si no se han seleccionado 3 géneros aún
-      setSelectedSeriesGenres([...selectedSeriesGenres, genre]);
-    }
-  };
+// Función para manejar la selección/deselección de géneros para series
+const handleSeriesGenreToggle = (genre) => {
+  if (selectedSeriesGenres.includes(genre)) {
+    // Deseleccionar el género si ya está seleccionado
+    setSelectedSeriesGenres(selectedSeriesGenres.filter((selectedGenre) => selectedGenre !== genre));
+  } else if (selectedSeriesGenres.length < 3) {
+    // Seleccionar el género si no se han seleccionado 3 géneros aún
+    setSelectedSeriesGenres([...selectedSeriesGenres, genre]);
+  } else {
+    // Si ya se seleccionaron 3 géneros, eliminar el último y agregar el nuevo
+    setSelectedSeriesGenres([...selectedSeriesGenres.slice(1), genre]);
+  }
+};
 
   // Efecto para manejar cambios en los géneros seleccionados
   useEffect(() => {

@@ -60,24 +60,33 @@ function PreferencesModal({ onClose, selectedGenres }) {
 
   // Función para manejar la selección/deselección de géneros para películas
   const handleMovieGenreToggle = (genre) => {
-    if (selectedMovieGenres.includes(genre)) {
-      // Deseleccionar el género si ya está seleccionado
-      setSelectedMovieGenres(selectedMovieGenres.filter((selectedGenre) => selectedGenre !== genre));
-    } else if (selectedMovieGenres.length < 3) {
-      // Seleccionar el género si no se han seleccionado 3 géneros aún
-      setSelectedMovieGenres([...selectedMovieGenres, genre]);
-    }
+    setSelectedMovieGenres((prevGenres) => {
+      if (prevGenres.includes(genre)) {
+        // Deseleccionar el género si ya está seleccionado
+        return prevGenres.filter((selectedGenre) => selectedGenre !== genre);
+      } else if (prevGenres.length < 3) {
+        // Seleccionar el género si no se han seleccionado 3 géneros aún
+        return [...prevGenres, genre];
+      } else {
+        // Si se ha alcanzado el límite, desmarcar la última opción y marcar la nueva
+        return [...prevGenres.slice(1), genre];
+      }
+    });
   };
-
   // Función para manejar la selección/deselección de géneros para series
   const handleSeriesGenreToggle = (genre) => {
-    if (selectedSeriesGenres.includes(genre)) {
-      // Deseleccionar el género si ya está seleccionado
-      setSelectedSeriesGenres(selectedSeriesGenres.filter((selectedGenre) => selectedGenre !== genre));
-    } else if (selectedSeriesGenres.length < 3) {
-      // Seleccionar el género si no se han seleccionado 3 géneros aún
-      setSelectedSeriesGenres([...selectedSeriesGenres, genre]);
-    }
+    setSelectedSeriesGenres((prevGenres) => {
+      if (prevGenres.includes(genre)) {
+        // Deseleccionar el género si ya está seleccionado
+        return prevGenres.filter((selectedGenre) => selectedGenre !== genre);
+      } else if (prevGenres.length < 3) {
+        // Seleccionar el género si no se han seleccionado 3 géneros aún
+        return [...prevGenres, genre];
+      } else {
+        // Si se ha alcanzado el límite, desmarcar la última opción y marcar la nueva
+        return [...prevGenres.slice(1), genre];
+      }
+    });
   };
 
   // Efecto para manejar cambios en los géneros seleccionados
