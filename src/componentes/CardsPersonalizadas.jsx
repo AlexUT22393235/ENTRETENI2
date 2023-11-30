@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { getPreferences } from './genreUtils';
+import { getPreferences, listenToPreferences } from './genreUtils';
 import useCurrentUser from './useCurrentUser';
 import { useNavigate } from 'react-router-dom';
 import './CardsPersonalizadas.css';
@@ -43,43 +43,76 @@ const CardsPersonalizadas = () => {
         }
     };
 
+    //Recuerda, un objeto tiene objeto = {clave: "valor"}, máquina
+
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            if (currentUser) {
-              const preferences = await getPreferences(currentUser.uid);
-              console.log('Preferences:', preferences);
-      
-              const filteredMovieUrls = Object.keys(preferences.peliculas)
-                .filter((index) => preferences.peliculas[index])
-                .map((index) => {
-                  const genreName = Object.keys(movieUrls)[index];
-                  return movieUrls[genreName];
-                });
-      
-              const filteredSeriesUrls = Object.keys(preferences.series)
-                .filter((index) => preferences.series[index])
-                .map((index) => {
-                  const genreName = Object.keys(seriesUrls)[index];
-                  return seriesUrls[genreName];
-                });
-      
-              console.log('Filtered Movie URLs:', filteredMovieUrls);
-              console.log('Filtered Series URLs:', filteredSeriesUrls);
-      
-              const moviePromises = filteredMovieUrls.map(fetchDataAndSetState(setMovieData));
-              const seriesPromises = filteredSeriesUrls.map(fetchDataAndSetState(setSeriesData));
-      
-              await Promise.all([...moviePromises, ...seriesPromises]);
+            try {
+                if (currentUser) {
+                    const preferences = await getPreferences(currentUser.uid);
+                    console.log('Preferences:', preferences);
+    
+                    const filteredMovieUrls = Object.values(preferences.peliculas)
+                        .filter((genre) => genre)
+                        .map((genre) => movieUrls[genre]);
+    
+                    const filteredSeriesUrls = Object.values(preferences.series)
+                        .filter((genre) => genre)
+                        .map((genre) => seriesUrls[genre]);
+    
+                    console.log('Filtered Movie URLs:', filteredMovieUrls);
+                    console.log('Filtered Series URLs:', filteredSeriesUrls);
+    
+                    const moviePromises = filteredMovieUrls.map(fetchDataAndSetState(setMovieData));
+                    const seriesPromises = filteredSeriesUrls.map(fetchDataAndSetState(setSeriesData));
+    
+                    await Promise.all([...moviePromises, ...seriesPromises]);
+
+                    // Escuchar cambios en tiempo real en las preferencias
+                    const unsubscribe = listenToPreferences(currentUser.uid, (updatedPreferences) => {
+                        console.log('Preferences updated:', updatedPreferences);
+
+                        // Actualizar las preferencias y volver a cargar los datos
+                        const updatedMovieUrls = Object.values(updatedPreferences.peliculas)
+                            .filter((genre) => genre)
+                            .map((genre) => movieUrls[genre]);
+
+                        const updatedSeriesUrls = Object.values(updatedPreferences.series)
+                            .filter((genre) => genre)
+                            .map((genre) => seriesUrls[genre]);
+
+                        console.log('Updated Movie URLs:', updatedMovieUrls);
+                        console.log('Updated Series URLs:', updatedSeriesUrls);
+
+                        setMovieData([]);
+                        setSeriesData([]);
+
+                        const updatedMoviePromises = updatedMovieUrls.map(fetchDataAndSetState(setMovieData));
+                        const updatedSeriesPromises = updatedSeriesUrls.map(fetchDataAndSetState(setSeriesData));
+
+                        Promise.all([...updatedMoviePromises, ...updatedSeriesPromises]);
+                    });
+
+                    // Limpiar el listener cuando el componente se desmonta
+                    return () => unsubscribe();
+
+
+
+                }
+            } catch (error) {
+                console.error('Error al obtener datos:', error);
             }
-          } catch (error) {
-            console.error('Error al obtener datos:', error);
-          }
         };
-      
+    
         fetchData();
-      }, [currentUser]);
-      
+    }, [currentUser]);
+    
+    
+    
+    
+    
+    
+    
       
       
       
