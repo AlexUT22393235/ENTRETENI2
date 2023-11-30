@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import logoImage from '../img/logo.png';
@@ -30,11 +30,20 @@ function Navbar() {
   const [mediaData, setMediaData] = useState([]);
   const API_KEY = '0db681bb093557fdf9d38e59e8f1d42b';
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Limpiar los resultados cuando la ubicación cambie (navegue a otra página)
+    setMediaData([]);
+  }, [location.pathname]);
+  
   const [enterPressed, setEnterPressed] = useState(false);
   //Para abrir el modal en la navbar
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
   const [searchResults, setSearchResults] = useState([]);
+//Para manejar estado de desmonte de resultados de búsqueda:
 
   //Verificación de usuario nuevo:
   // const [isNewUser, setIsNewUser] = useState(false);
@@ -68,32 +77,19 @@ function Navbar() {
   }, [user]);
 
 
-  //Efecto para verificar si el usuario existe en la colección:
-  // useEffect(() => {
-  //   const checkIfLoggedInBefore = async () => {
-  //     try {
-  //       if (currentUser) {
-  //         // Consulta la colección de usuarios en Firebase
-  //         const userSnapshot = await firebase
-  //           .firestore()
-  //           .collection('usuarios')  // Ajusta el nombre de tu colección de usuarios
-  //           .doc(currentUser.uid)
-  //           .get();
 
-  //         // Actualiza el estado para indicar si el usuario ha iniciado sesión previamente
-  //         setIsNewUser(!userSnapshot.exists);
-  //       }
-  //     } catch (error) {
-  //       console.error('Error al verificar si el usuario ha iniciado sesión:', error);
-  //     }
-  //   };
-
-  //   checkIfLoggedInBefore();
-  // }, [currentUser]);
+  //Para controlar esto de resultados de búsqueda:
+  const handleClearResults = () => {
+    setMediaData([]); // Limpiar el estado de los resultados de búsqueda
+  };
+  
+  
 
   const handleUserNameClick = () => {
     setShowLogoutButton(!showLogoutButton);
   };
+
+
 
   const handleLogout = async () => {
     try {
@@ -158,6 +154,18 @@ function Navbar() {
     setShowPreferencesModal(true);
   };
 
+
+  useEffect(() => {
+    // Limpiar los resultados cuando la ubicación cambie (navegue a otra página)
+    const handleClearResults = () => {
+      setMediaData([]);
+    };
+
+    // Limpiar los resultados cuando el componente se desmonta
+    return () => {
+      handleClearResults();
+    };
+  }, []);
 
 
   return (
@@ -342,10 +350,11 @@ function Navbar() {
       </nav>
 
       <ResultadoBusqueda
-        mediaData={mediaData}
-        handleMediaClick={(id, result) => handleMediaClick(id, result)}
-        BASE_IMAGE_URL={BASE_IMAGE_URL}
-      />
+  mediaData={mediaData}
+  handleMediaClick={handleMediaClick}
+  BASE_IMAGE_URL={BASE_IMAGE_URL}
+  handleClearResults={handleClearResults} // Pasa la función handleClearResults como prop
+/>
     </div>
   );
 }

@@ -1,8 +1,10 @@
-// SearchResults.jsx
+// ResultadoBusqueda.jsx
 import React from 'react';
 
 const ResultadoBusqueda = ({ mediaData, handleMediaClick, BASE_IMAGE_URL }) => {
-  return (
+  // Renderizar el componente solo si hay resultados
+  
+  return mediaData.length > 0 ? (
     <div className="movie-cards">
       {mediaData.map((result) => (
         <div key={result.id} className="movie-card" onClick={() => handleMediaClick(result.id, result)}>
@@ -11,7 +13,7 @@ const ResultadoBusqueda = ({ mediaData, handleMediaClick, BASE_IMAGE_URL }) => {
         </div>
       ))}
     </div>
-  );
+  ) : null; // Si no hay resultados, devolver null
 };
 
 export default ResultadoBusqueda;
