@@ -13,6 +13,7 @@ import PreferencesModalNavbar from './PreferencesModalNavbar';
 import useCurrentUser from './useCurrentUser';
 
 import 'firebase/compat/firestore';
+import ResultadoBusqueda from './ResultadoBusqueda';
 
 
 // function mostrarModal(){
@@ -148,6 +149,8 @@ function Navbar() {
 
     // Limpiar los resultados
     setMediaData([]);
+
+    navigate('/');
   };
 
   // Para mostrar modal:
@@ -338,14 +341,11 @@ function Navbar() {
         </div>
       </nav>
 
-      <div className="movie-cards">
-        {mediaData.map((result) => (
-          <div key={result.id} className="movie-card" onClick={() => handleMediaClick(result.id, result)}>
-            <h2>{result.title || result.name}</h2>
-            <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
-          </div>
-        ))}
-      </div>
+      <ResultadoBusqueda
+        mediaData={mediaData}
+        handleMediaClick={(id, result) => handleMediaClick(id, result)}
+        BASE_IMAGE_URL={BASE_IMAGE_URL}
+      />
     </div>
   );
 }

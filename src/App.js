@@ -29,9 +29,12 @@ import DetallesLibros from './componentes/DetallesLibros';
 import GoogleBooksSearch from './componentes/Libros';
 import Musica from './componentes/Musica';
 import DetallesMusica from './componentes/DetallesMusica';
+import ResultadoBusqueda from './componentes/ResultadoBusqueda';
 
 function App() {
   const [user, setUser] = React.useState(null);
+  const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+
 
   return (
     <Router>
@@ -45,6 +48,11 @@ function App() {
           <Route path="/PeliculasYSeries" element={<PeliculasYSeries />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           {/* <Route path="/Busqueda" element={<ResultadosBusqueda/>} /> */}
+
+          <Route
+    path="/resultados-busqueda"
+    element={<ResultadoBusqueda BASE_IMAGE_URL={BASE_IMAGE_URL} />}
+  />
 
 
 
