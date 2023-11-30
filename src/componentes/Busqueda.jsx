@@ -25,6 +25,7 @@ function ResultadosBusqueda() {
     };
   
     fetchData();
+   
   }, [category, query]);
   
 

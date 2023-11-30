@@ -24,7 +24,7 @@ import ScienceFictionSeries from './generos/SciFiSeries';
 import ComedySeries from './generos/ComedySeries';
 import DramaSeries from './generos/DramaSeries';
 import CrimeSeries from './generos/CrimenSeries';
-import ResultadosBusqueda from './componentes/Busqueda';
+// import ResultadosBusqueda from './componentes/Busqueda';
 import DetallesLibros from './componentes/DetallesLibros';
 import GoogleBooksSearch from './componentes/Libros';
 import Musica from './componentes/Musica';
@@ -44,7 +44,9 @@ function App() {
           <Route path="/Series" element={<Series />} />
           <Route path="/PeliculasYSeries" element={<PeliculasYSeries />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/Busqueda" element={<ResultadosBusqueda/>} />
+          {/* <Route path="/Busqueda" element={<ResultadosBusqueda/>} /> */}
+
+
 
           <Route path="/ActionMovies" element={<ActionMovies />} />
           <Route path="/ActionSeries" element={<ActionAdventureSeries/>} />

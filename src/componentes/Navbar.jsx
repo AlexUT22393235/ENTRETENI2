@@ -17,7 +17,7 @@ import 'firebase/compat/firestore';
 
 // function mostrarModal(){
 //   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
-  
+
 // }
 
 
@@ -33,6 +33,7 @@ function Navbar() {
   const [enterPressed, setEnterPressed] = useState(false);
   //Para abrir el modal en la navbar
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
 
   //Verificación de usuario nuevo:
   // const [isNewUser, setIsNewUser] = useState(false);
@@ -115,6 +116,8 @@ function Navbar() {
           if (response.ok) {
             const data = await response.json();
             setMediaData(data.results);
+            setSearchTerm('');
+            setEnterPressed(false);
           }
         } catch (error) {
           console.error('Error al cargar datos:', error);
@@ -268,24 +271,24 @@ function Navbar() {
 
             <div className="custom-dropdown">
               <span className="custom-dropdown-label custom-button">Extras</span>
-            <div className="custom-dropdown-content">
-              <ul>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Acción')}>
-                  <Link to="/Musica">
-                    <span className="custom-button">Música</span>
-                  </Link>
-                </li>
-                <li
-                  onMouseEnter={() => setSelectedCategory('Peliculas Aventura')}
-                >
-                  <Link to="/Libros">
-                    <span className="custom-button">Libros</span>
-                  </Link>
-                </li>
-              </ul>
+              <div className="custom-dropdown-content">
+                <ul>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Acción')}>
+                    <Link to="/Musica">
+                      <span className="custom-button">Música</span>
+                    </Link>
+                  </li>
+                  <li
+                    onMouseEnter={() => setSelectedCategory('Peliculas Aventura')}
+                  >
+                    <Link to="/Libros">
+                      <span className="custom-button">Libros</span>
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
           </div>
           <div className="search-container">
             <div className="search-input-container">
@@ -320,7 +323,7 @@ function Navbar() {
                 </button>
               </Link>
             )}
-                 {user && (
+            {user && (
               <button className="preferences-button" onClick={openPreferencesModal}>
                 Preferencias
               </button>
