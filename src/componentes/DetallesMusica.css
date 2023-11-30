@@ -1,58 +1,70 @@
-/* DetallesMusica.css */
+/* Estilos para la barra de encabezado con el nombre del artista */
+.artist-header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
 
-.album-details-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(59, 153, 230, 0.395);
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .album-details-title {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  
-  .album-details-content {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .album-info {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .album-image {
-    width: 26%;
-    margin-right: 20px;
-  }
-  
-  .album-image img {
-    border-radius: 12px;
-    max-width: 100%;
-    max-height: 100%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 15%;
-  }
-  
-  .album-details-content .album-details-content {
-    flex: 1;
-    text-align: left;
-  }
-  
-  .album-details-content h3 {
-    font-size: 24px;
-    margin: 0;
-    margin-bottom: 20px;
-    padding-left: 5%;
-    padding-top: 3%;
-  }
-  
-  .album-details-content p {
-    font-size: 16px;
-    margin: 20px 0;
-    padding-left: 5%;
-  }
+.artist-header h1 {
+  margin: 0;
+}
+
+/* Estilos para las tarjetas de álbumes */
+.artist-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.artist-card {
+  padding-top: 100px;
+  width: 30%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.artist-card:hover {
+  transform: translateY(-5px);
+}
+
+.artist-card img {
+  max-width: 80%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.artist-card h2 {
+  color: #000;
+  margin-top: 10px;
+}
+
+/* Estilos para la barra de encabezado con el nombre del artista */
+.artist-header {
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.artist-name-box {
+  background-color: #fff;
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.artist-header .artist-name {
+  margin: 0;
+}
+
+

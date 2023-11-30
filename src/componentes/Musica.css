@@ -1,59 +1,63 @@
+/* Estilos para las tarjetas de artistas */
+.artist-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-/* Estilos para las tarjetas de álbumes */
-.album-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .album-card {
-    width: 30%;
-    margin: 10px;
-    box-sizing: border-box;
-    text-align: center;
-    border-radius: 15px;
-    background-color: #fff;
-    padding: 10px;
-    position: relative;
-  }
-  
-  .album-card img {
-    max-width: 80%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 15px;
-       
-  }
-  
-  .album-card h3 {
-    color: #000;
-    margin-top: 10px;
-  }
-  
-  /* Estilos para el formulario de búsqueda */
-  .search-form {
-    margin-bottom: 20px;
-  }
-  
-  .search-form input[type="text"] {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    width: 200px; /* Ancho ajustable */
-  }
-  
-  .search-form button {
-    padding: 10px 15px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .search-form button:hover {
-    background-color: #0056b3;
-  }
+.artist-card {
+  width: 30%;
+  margin: 10px;
+  box-sizing: border-box;
+  text-align: center;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 10px;
+  position: relative;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.artist-card:hover {
+  transform: translateY(-5px);
+}
+
+.artist-card img {
+  max-width: 80%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.artist-card h2 {
+  color: #000;
+  margin-top: 10px;
+}
+
+/* Estilos para el formulario de búsqueda */
+.search-form {
+  margin-bottom: 20px;
+}
+
+.search-form input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 200px; /* Ancho ajustable */
+}
+
+.search-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.search-form button:hover {
+  background-color: #0056b3;
+}

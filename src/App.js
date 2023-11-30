@@ -61,7 +61,7 @@ function App() {
           <Route path="/libro/:bookId" element={<DetallesLibros />} />
           <Route path="/Musica" element={<Musica />} />
           <Route path="/Libros" element={<GoogleBooksSearch />} />
-          <Route path="/musica/:album" element={<DetallesMusica />} />
+          <Route path="/musica/:artist" element={<DetallesMusica />} />
 
           <Route path="/pelicula/:id" element={<DetallePeliculas />} />
           <Route path="/serie/:id" element={<DetalleSeries/>} />

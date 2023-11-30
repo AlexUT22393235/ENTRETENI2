@@ -1,73 +1,118 @@
 import React, { useState, useEffect } from 'react';
 import './Musica.css';
 import axios from 'axios';
+import DetallesMusica from './DetallesMusica';
 import { useNavigate } from 'react-router-dom';
 
-const Musica = () => {
+const LastFmApiComponent = () => {
   const API_KEY = 'dfa1cf8d1f24d259e2de9b2b8965cbf8';
   const BASE_URL = 'http://ws.audioscrobbler.com/2.0';
-  const DEFAULT_ARTIST = 'Dua Lipa';
 
-  const [albums, setAlbums] = useState([]);
-  const [artistName, setArtistName] = useState('');
+  const [artists, setArtists] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [error, setError] = useState(null);
-  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [selectedArtist, setSelectedArtist] = useState(null);
+  const [albumImages, setAlbumImages] = useState({});
 
-  const navigate = useNavigate(); // Agregar esta línea para obtener la función navigate
+  const navigate = useNavigate();
 
-  const fetchAlbums = async (artistName) => {
+  const fetchTopArtists = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/?method=artist.gettopalbums&artist=${encodeURIComponent(artistName)}&api_key=${API_KEY}&format=json`
+        `${BASE_URL}/?method=chart.gettopartists&api_key=${API_KEY}&format=json`
       );
-      setAlbums(response.data.topalbums.album.slice(0, 12));
+      setArtists(response.data.artists.artist.slice(0, 10));
       setError(null);
     } catch (err) {
-      setError('Error al obtener la información de los álbumes');
-      setAlbums([]);
+      setError('Error al obtener la información de los artistas');
+      setArtists([]);
     }
   };
 
   useEffect(() => {
-    fetchAlbums(DEFAULT_ARTIST);
+    fetchTopArtists();
   }, []);
 
+  useEffect(() => {
+    const fetchAlbumImages = async () => {
+      const images = {};
+      await Promise.all(
+        artists.map(async (artist) => {
+          try {
+            const response = await axios.get(
+              `${BASE_URL}/?method=artist.gettopalbums&artist=${artist.name}&api_key=${API_KEY}&format=json`
+            );
+            const topAlbum = response.data.topalbums.album[0];
+            if (topAlbum && topAlbum.image && topAlbum.image[2] && topAlbum.image[2]['#text']) {
+              images[artist.name] = topAlbum.image[2]['#text'];
+            }
+          } catch (error) {
+            images[artist.name] = ''; // En caso de error, asigna una cadena vacía
+          }
+        })
+      );
+      setAlbumImages(images);
+    };
+    if (artists.length > 0) {
+      fetchAlbumImages();
+    }
+  }, [artists]);
+
   const handleInputChange = (event) => {
-    setArtistName(event.target.value);
+    setSearchQuery(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    fetchAlbums(artistName);
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/?method=artist.search&artist=${encodeURIComponent(searchQuery)}&api_key=${API_KEY}&format=json`
+      );
+      if (response.data && response.data.results && response.data.results.artistmatches && response.data.results.artistmatches.artist) {
+        setArtists(response.data.results.artistmatches.artist.slice(0, 10));
+        setError(null);
+      } else {
+        setError('No se encontraron artistas');
+        setArtists([]);
+      }
+    } catch (err) {
+      setError('Error al buscar artistas');
+      setArtists([]);
+    }
   };
 
-  const handleAlbumClick = (album) => {
-    navigate(`/musica/${album.name}`); 
+  const handleArtistClick = (artist) => {
+    navigate(`/musica/${artist.name}`);
   };
 
   return (
-    <div>
+    <div className="music-container">
       <form onSubmit={handleSubmit} className="search-form">
         <input
           type="text"
-          placeholder="Nombre del artista o álbum"
-          value={artistName}
+          placeholder="Buscar artistas"
+          value={searchQuery}
           onChange={handleInputChange}
         />
         <button type="submit">Buscar</button>
       </form>
 
-      <div className="album-cards">
-        {albums.map((album) => (
-          <div key={album.name} className="album-card" onClick={() => handleAlbumClick(album)}>
-            <img src={album.image[2]['#text']} alt={album.name} />
-            <h2>{album.name}</h2>
+      <div className="artist-cards">
+        {artists.map((artist) => (
+          <div key={artist.name} className="artist-card" onClick={() => handleArtistClick(artist)}>
+            {albumImages[artist.name] ? (
+              <img src={albumImages[artist.name]} alt={`Album ${artist.name}`} />
+            ) : (
+              <img src={artist.image && artist.image[2] && artist.image[2]['#text']} alt={artist.name} />
+            )}
+            <h2>{artist.name}</h2>
           </div>
         ))}
       </div>
 
+      {selectedArtist && <DetallesMusica artist={selectedArtist} />}
     </div>
   );
 };
 
-export default Musica;
+export default LastFmApiComponent;
