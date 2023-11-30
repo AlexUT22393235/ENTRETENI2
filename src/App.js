@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './componentes/Navbar';
 import Login from './componentes/Login';
@@ -34,6 +34,7 @@ import ResultadoBusqueda from './componentes/ResultadoBusqueda';
 function App() {
   const [user, setUser] = React.useState(null);
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+  const [searchResults, setSearchResults] = useState([]);
 
 
   return (
@@ -47,13 +48,8 @@ function App() {
           <Route path="/Series" element={<Series />} />
           <Route path="/PeliculasYSeries" element={<PeliculasYSeries />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          {/* <Route path="/Busqueda" element={<ResultadosBusqueda/>} /> */}
-
-          <Route
-    path="/resultados-busqueda"
-    element={<ResultadoBusqueda BASE_IMAGE_URL={BASE_IMAGE_URL} />}
-  />
-
+          
+          <Route path="/resultados-busqueda" element={<ResultadoBusqueda />} />
 
 
           <Route path="/ActionMovies" element={<ActionMovies />} />

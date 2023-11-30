@@ -132,6 +132,8 @@ const handleSeriesGenreToggle = (genre) => {
       <div className="preferences-modal">
         <div className="preferences-modal-header">
           <h2>Preferencias</h2>
+          <p>De 1 a 3 géneros</p>
+
           <button onClick={onClose}>&times;</button>
         </div>
         <div className="preferences-modal-content">

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate,  } from 'react-router-dom';
 import './Navbar.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import logoImage from '../img/logo.png';
@@ -32,13 +32,12 @@ function Navbar() {
   const BASE_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
   const navigate = useNavigate();
-  const location = useLocation();
 
-  useEffect(() => {
-    // Limpiar los resultados cuando la ubicación cambie (navegue a otra página)
-    setMediaData([]);
-  }, [location.pathname]);
-  
+  // useEffect(() => {
+  //   // Limpiar los resultados cuando la ubicación cambie (navegue a otra página)
+  //   setMediaData([]);
+  // }, [location.pathname]);
+
   const [enterPressed, setEnterPressed] = useState(false);
   //Para abrir el modal en la navbar
   const [showPreferencesModal, setShowPreferencesModal] = useState(false);
@@ -128,6 +127,7 @@ function Navbar() {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       setEnterPressed(true);
+      navigate(`/resultados-busqueda?query=${searchTerm}`)
     }
   };
 
@@ -166,6 +166,15 @@ function Navbar() {
       handleClearResults();
     };
   }, []);
+
+  // const handleSearch = () => {
+  //   // Realizar búsqueda y actualizar los resultados
+  //   const results = performSearch(searchTerm);
+  //   setSearchResults(results);
+
+  //   // Redirigir a la página de resultados de búsqueda
+  //   navigate('/resultados-busqueda');
+  // };
 
 
   return (
