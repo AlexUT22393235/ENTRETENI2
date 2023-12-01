@@ -1,65 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-const DetallesMusica = ({ album }) => {
+const DetallesMusica = () => {
   const API_KEY = 'dfa1cf8d1f24d259e2de9b2b8965cbf8';
   const BASE_URL = 'http://ws.audioscrobbler.com/2.0';
 
-  const [albumDetails, setAlbumDetails] = useState(null);
+  const { artist } = useParams();
+  const [artistAlbums, setArtistAlbums] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchAlbumDetails = async () => {
-      if (!album || !album.artist || !album.name) {
-        setError('Datos de álbum no válidos');
-        setAlbumDetails(null);
-        return;
-      }
-
+    const fetchArtistAlbums = async () => {
       try {
-        const artistName = encodeURIComponent(album.artist.name);
-        const albumName = encodeURIComponent(album.name);
-
-        const apiUrl = `${BASE_URL}/?method=album.getinfo&artist=${artistName}&album=${albumName}&api_key=${API_KEY}&format=json`;
-
-        console.log(apiUrl); // Imprime la URL en la consola
-
-        const response = await axios.get(apiUrl);
-        
-        if (response.data && response.data.album) {
-          setAlbumDetails(response.data.album);
+        const response = await axios.get(
+          `${BASE_URL}/?method=artist.gettopalbums&artist=${encodeURIComponent(artist)}&api_key=${API_KEY}&format=json`
+        );
+        if (response.data && response.data.topalbums && response.data.topalbums.album) {
+          setArtistAlbums(response.data.topalbums.album);
           setError(null);
         } else {
-          setError('No se encontró información del álbum');
-          setAlbumDetails(null);
+          setError('No se encontraron álbumes para este artista');
+          setArtistAlbums([]);
         }
       } catch (err) {
-        console.error('Error al obtener la información del álbum:', err);
-        setError(`Error al obtener la información del álbum: ${err.message}`);
-        setAlbumDetails(null);
+        setError('Error al obtener la información de los álbumes del artista');
+        setArtistAlbums([]);
       }
     };
 
-    fetchAlbumDetails();
-  }, [album]);
+    fetchArtistAlbums();
+  }, [artist]);
 
   return (
     <div>
-      {error && <p>{error}</p>}
-      {albumDetails && (
-        <div>
-          <h2>{albumDetails.name}</h2>
-          <p>Artista: {albumDetails.artist}</p>
-          <p>Reproducciones: {albumDetails.playcount}</p>
-          <p>Fecha de lanzamiento: {albumDetails.wiki && albumDetails.wiki.published}</p>
-          <h3>Canciones:</h3>
-          <ul>
-            {albumDetails.tracks && albumDetails.tracks.track.map((track, index) => (
-              <li key={index}>{track.name}</li>
-            ))}
-          </ul>
+      <div className="artist-header">
+        <div className="artist-name-box">
+          <h1 className="artist-name">{artist}</h1>
         </div>
-      )}
+      </div>
+      <div className="artist-cards">
+        {error && <p>{error}</p>}
+        {artistAlbums.length > 0 && (
+          artistAlbums.map((album, index) => (
+            <a
+              key={index}
+              className="artist-card"
+              href={`https://www.google.com/search?q=${encodeURIComponent(`${album.name} ${album.artist.name} album`)}`}
+              target="_blank" // Abre el enlace en una nueva pestaña
+              rel="noopener noreferrer" // Añade rel para la seguridad
+            >
+              <img src={album.image[2]['#text']} alt={album.name} />
+              <h2>{album.name}</h2>
+            </a>
+          ))
+        )}
+      </div>
     </div>
   );
 };

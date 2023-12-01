@@ -28,11 +28,11 @@ const GoogleBooksSearch = () => {
   const MAX_RESULTS = 32; // Cantidad máxima de libros a obtener
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchRandomBooks = async () => {
       try {
         const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
           params: {
-            q: selectedGenre ? `subject:${selectedGenre}` : 'ficcion', // Búsqueda predeterminada si no se selecciona un género
+            q: 'subject:fiction', // Búsqueda predeterminada para libros aleatorios
             key: API_KEY,
             maxResults: MAX_RESULTS,
             langRestrict: 'es',
@@ -45,15 +45,46 @@ const GoogleBooksSearch = () => {
       }
     };
 
-    fetchBooks();
+    fetchRandomBooks();
+  }, []); // Llamada inicial para obtener libros aleatorios
+
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        let query = selectedGenre ? `subject:${selectedGenre}` : '';
+
+        if (searchTerm) {
+          query += `${query ? '+' : ''}"${searchTerm}"`;
+        }
+
+        const response = await axios.get('https://www.googleapis.com/books/v1/volumes', {
+          params: {
+            q: query,
+            key: API_KEY,
+            maxResults: MAX_RESULTS,
+            langRestrict: 'es',
+          },
+        });
+
+        setBooks(response.data.items || []);
+      } catch (error) {
+        console.error('Error al buscar libros:', error);
+      }
+    };
+
+    if (selectedGenre || searchTerm) {
+      fetchBooks();
+    }
   }, [selectedGenre, searchTerm]);
 
   const handleGenreChange = (event) => {
     setSelectedGenre(event.target.value);
+    setSearchTerm(''); // Limpiar término de búsqueda al cambiar el género
   };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
+    setSelectedGenre(''); // Limpiar género al realizar una búsqueda
   };
 
   const handleAlbumClick = (book) => {

@@ -1,9 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './DetallesLibros.css'; // Importa tu archivo de estilos CSS
-import Footer from './Footer';
+
+const stripHtmlTags = (html) => {
+  const regex = /(<([^>]+)>)/gi;
+  return html ? html.replace(regex, '') : '';
+};
 
 const DetallesLibros = () => {
   const [bookDetails, setBookDetails] = useState({});
@@ -22,6 +25,16 @@ const DetallesLibros = () => {
     fetchBookDetails();
   }, [bookId]);
 
+  const getSpanishDescription = () => {
+    if (bookDetails.volumeInfo && bookDetails.volumeInfo.description) {
+      const { description, language } = bookDetails.volumeInfo;
+      if (language && language.toLowerCase().includes('es')) {
+        return stripHtmlTags(description);
+      }
+    }
+    return ''; // Si no hay descripción en español, devuelve una cadena vacía
+  };
+
   return (
     <div className="book-details-container">
       <h2 className="book-details-title">Detalles del Libro</h2>
@@ -34,9 +47,8 @@ const DetallesLibros = () => {
           </div>
           <div>
             <h3 className="book-title">{bookDetails.volumeInfo && bookDetails.volumeInfo.title}</h3>
-            {bookDetails.volumeInfo && bookDetails.volumeInfo.description && (
-              <p className="book-description">{bookDetails.volumeInfo.description}</p>
-            )}
+            {/* Mostrar la descripción en español sin etiquetas HTML si está disponible */}
+            <p className="book-description">{getSpanishDescription()}</p>
             {/* Agregar aquí otros detalles del libro que desees mostrar */}
           </div>
         </div>
