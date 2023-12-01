@@ -30,6 +30,7 @@ import GoogleBooksSearch from './componentes/Libros';
 import Musica from './componentes/Musica';
 import DetallesMusica from './componentes/DetallesMusica';
 import ResultadoBusqueda from './componentes/ResultadoBusqueda';
+import DetalleElemento from './componentes/DetalleElemento';
 
 function App() {
   const [user, setUser] = React.useState(null);
@@ -71,6 +72,7 @@ function App() {
 
           <Route path="/pelicula/:id" element={<DetallePeliculas />} />
           <Route path="/serie/:id" element={<DetalleSeries/>} />
+          <Route path="/detalle/:id" element={<DetalleElemento/>}/>
         </Routes>
       </div>
       <Footer/>

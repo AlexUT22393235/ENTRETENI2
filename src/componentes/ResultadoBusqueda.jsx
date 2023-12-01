@@ -26,16 +26,22 @@ const ResultadoBusqueda = ({ mediaData, handleMediaClick, BASE_IMAGE_URL }) => {
         return null;
     }
 
-  return mediaData && mediaData.length > 0 ? (
-    <div className="movie-cards">
-      {mediaData.map((result) => (
-        <div key={result.id} className="movie-card" onClick={() => handleMediaClick(result.id, result)}>
-          <h2>{result.title || result.name}</h2>
-          <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
-        </div>
-      ))}
-    </div>
-  ) : null; // Si no hay resultados o mediaData es undefined, devolver null
+    const handleMediaClickDetalle = (id) => {
+      // Navegar a la ruta de detalles con el ID del elemento
+      navigate(`/detalle/${id}`);
+    };
+
+    return mediaData && mediaData.length > 0 ? (
+      <div className="movie-cards">
+        {mediaData.map((result) => (
+          <div key={result.id} className="movie-card" onClick={() => handleMediaClickDetalle(result.id)}>
+            <h2>{result.title || result.name}</h2>
+            <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
+          </div>
+        ))}
+      </div>
+    ) : null; // Si no hay resultados o mediaData es undefined, devolver null
+
 };
 
 export default ResultadoBusqueda;
