@@ -17,15 +17,15 @@ export const getPreferences = async (userId) => {
   export const listenToPreferences = (userId, callback) => {
     const db = getFirestore();
     const userDocRef = doc(db, 'usuarios', userId);
-
+  
     // Devolvemos la función de cancelación para que el componente pueda limpiar el listener cuando sea necesario
     return onSnapshot(userDocRef, (docSnapshot) => {
-        if (docSnapshot.exists()) {
-            const preferences = docSnapshot.data().preferences || {};
-            callback(preferences);
-        }
+      if (docSnapshot.exists()) {
+        const preferences = docSnapshot.data().preferences || {};
+        callback(preferences);
+      }
     });
-};
+  };
 
  // Función para actualizar las preferencias del usuario
 export const updatePreferences = async (userId, preferences) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPreferences, updatePreferences } from './genreUtils.js';
+import { getPreferences, updatePreferences,listenToPreferences } from './genreUtils.js';
 import useCurrentUser from './useCurrentUser';
 import './PreferencesModal.css';
 
@@ -46,6 +46,7 @@ function PreferencesModal({ onClose, selectedGenres }) {
 
           // Cerrar el modal
           onClose();
+          window.location.reload();
         } else {
           console.error('Usuario no autenticado o en estado de carga.');
         }
@@ -60,34 +61,31 @@ function PreferencesModal({ onClose, selectedGenres }) {
 
   // Función para manejar la selección/deselección de géneros para películas
   const handleMovieGenreToggle = (genre) => {
-    setSelectedMovieGenres((prevGenres) => {
-      if (prevGenres.includes(genre)) {
-        // Deseleccionar el género si ya está seleccionado
-        return prevGenres.filter((selectedGenre) => selectedGenre !== genre);
-      } else if (prevGenres.length < 3) {
-        // Seleccionar el género si no se han seleccionado 3 géneros aún
-        return [...prevGenres, genre];
-      } else {
-        // Si se ha alcanzado el límite, desmarcar la última opción y marcar la nueva
-        return [...prevGenres.slice(1), genre];
-      }
-    });
+    if (selectedMovieGenres.includes(genre)) {
+      // Deseleccionar el género si ya está seleccionado
+      setSelectedMovieGenres(selectedMovieGenres.filter((selectedGenre) => selectedGenre !== genre));
+    } else if (selectedMovieGenres.length < 3) {
+      // Seleccionar el género si no se han seleccionado 3 géneros aún
+      setSelectedMovieGenres([...selectedMovieGenres, genre]);
+    } else {
+      // Si ya se seleccionaron 3 géneros, eliminar el último y agregar el nuevo
+      setSelectedMovieGenres([...selectedMovieGenres.slice(1), genre]);
+    }
   };
+
   // Función para manejar la selección/deselección de géneros para series
   const handleSeriesGenreToggle = (genre) => {
-    setSelectedSeriesGenres((prevGenres) => {
-      if (prevGenres.includes(genre)) {
-        // Deseleccionar el género si ya está seleccionado
-        return prevGenres.filter((selectedGenre) => selectedGenre !== genre);
-      } else if (prevGenres.length < 3) {
-        // Seleccionar el género si no se han seleccionado 3 géneros aún
-        return [...prevGenres, genre];
-      } else {
-        // Si se ha alcanzado el límite, desmarcar la última opción y marcar la nueva
-        return [...prevGenres.slice(1), genre];
-      }
-    });
-  };
+  if (selectedSeriesGenres.includes(genre)) {
+    // Deseleccionar el género si ya está seleccionado
+    setSelectedSeriesGenres(selectedSeriesGenres.filter((selectedGenre) => selectedGenre !== genre));
+  } else if (selectedSeriesGenres.length < 3) {
+    // Seleccionar el género si no se han seleccionado 3 géneros aún
+    setSelectedSeriesGenres([...selectedSeriesGenres, genre]);
+  } else {
+    // Si ya se seleccionaron 3 géneros, eliminar el último y agregar el nuevo
+    setSelectedSeriesGenres([...selectedSeriesGenres.slice(1), genre]);
+  }
+};
 
   // Efecto para manejar cambios en los géneros seleccionados
   useEffect(() => {
@@ -118,6 +116,20 @@ function PreferencesModal({ onClose, selectedGenres }) {
     checkIfLoggedInBefore();
   }, [currentUser]);
 
+  useEffect(() => {
+    // Función para manejar los cambios después de aplicar preferencias
+    const handlePreferencesChange = (preferences) => {
+      // Actualizar los géneros seleccionados en el estado del componente
+      setSelectedMovieGenres(Array.isArray(preferences.peliculas) ? preferences.peliculas : []);
+      setSelectedSeriesGenres(Array.isArray(preferences.series) ? preferences.series : []);
+    };
+    // Escuchar cambios en las preferencias del usuario en Firebase
+    const unsubscribe = currentUser && listenToPreferences(currentUser.uid, handlePreferencesChange);
+
+    // Limpiar el listener cuando el componente se desmonte o el usuario cambie
+    return () => unsubscribe && unsubscribe();
+  }, [currentUser]);
+
   //Si el usuario no ha iniciado sesión, no se muestra el modal
   if (!currentUser) {
   
@@ -137,6 +149,7 @@ function PreferencesModal({ onClose, selectedGenres }) {
           <div className="preferences-modal-header">
             <h2>Preferencias</h2>
             <p>De 1 a 3 géneros</p>
+  
             <button onClick={onClose}>&times;</button>
           </div>
           <div className="preferences-modal-content">
@@ -188,13 +201,14 @@ function PreferencesModal({ onClose, selectedGenres }) {
             </div>
   
             {/* Botón para aplicar preferencias */}
-            <button className="apply-button" onClick={applyPreferences}>
+            <button className="apply-button" onClick={ applyPreferences }>
               Aplicar
             </button>
           </div>
         </div>
       </div>
     );
+  
 
   }
 
