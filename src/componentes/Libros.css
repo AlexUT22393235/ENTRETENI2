@@ -1,6 +1,6 @@
 /* GoogleBooksSearch.css */
 .filtradoLibro{
-  margin-left:650px;
+  margin-left:60px;
   
 }
 
@@ -11,7 +11,7 @@
   border: 1px solid #ccc;
   width: 300px; /* Ancho del campo de búsqueda */
   margin-bottom: 40px; /* Espaciado inferior */
-  margin-right: 1000px;
+  margin-right: 500px;
 }
 
 
