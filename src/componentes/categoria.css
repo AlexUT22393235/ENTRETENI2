@@ -22,6 +22,12 @@
     object-fit: cover;
     border-radius: 15px;
   }
-h2 {
-  color: #000;
-}
+  .movie-card h2 {
+    color: #2a2828; /* Cambié a un tono más oscuro para mejorar la legibilidad */
+    text-align: center;
+    margin: 0; /* Elimina el margen para un aspecto más limpio */
+    font-size: 1.2rem; /* Tamaño de fuente legible y proporcional */
+    font-weight: bold; /* Añade negrita para destacar */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+    letter-spacing: 1px; /* Agrega un pequeño espaciado entre las letras */
+  }

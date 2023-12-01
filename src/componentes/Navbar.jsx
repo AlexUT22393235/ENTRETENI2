@@ -315,7 +315,7 @@ function Navbar() {
               <input
                 className="search-input rounded"
                 type="text"
-                placeholder="Buscar..."
+                placeholder="Buscar pelicula o serie"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleKeyDown}

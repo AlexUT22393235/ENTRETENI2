@@ -92,14 +92,16 @@ const GoogleBooksSearch = () => {
   };
 
   return (
-    <div>
-      <h3>Seleccione un género:</h3>
-      <select className="genre-select" onChange={handleGenreChange} value={selectedGenre}>
-        <option value="">Todos los géneros</option>
-        {genresList.map((genre, index) => (
-          <option key={index} value={genre}>{genre}</option>
-        ))}
-      </select>
+    <div >
+      <div className='filtradoLibro'>
+        <h3>Seleccione un género:</h3>
+        <select className="genre-select" onChange={handleGenreChange} value={selectedGenre}>
+          <option value="">Todos los géneros</option>
+          {genresList.map((genre, index) => (
+            <option key={index} value={genre}>{genre}</option>
+          ))}
+        </select>
+      
 
       <div>
         <input
@@ -109,6 +111,7 @@ const GoogleBooksSearch = () => {
           value={searchTerm}
           onChange={handleSearch}
         />
+      </div>
       </div>
 
       <div className="book-list">

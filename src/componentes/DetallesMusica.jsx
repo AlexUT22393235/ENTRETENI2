@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import './DetallesMusica.css'
 
 const DetallesMusica = () => {
   const API_KEY = 'dfa1cf8d1f24d259e2de9b2b8965cbf8';

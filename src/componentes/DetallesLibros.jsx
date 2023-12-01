@@ -37,7 +37,6 @@ const DetallesLibros = () => {
 
   return (
     <div className="book-details-container">
-      <h2 className="book-details-title">Detalles del Libro</h2>
       <div className="book-details-content">
         <div className="book-info">
           <div className="book-image">

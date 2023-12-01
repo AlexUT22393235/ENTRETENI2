@@ -39,7 +39,7 @@ function AdventureMovies() {
                 {adventureMovies.map((movie) => (
                     <div key={movie.id} className="movie-card" onClick={() => handleMovieClick(movie.id)}>
                         <img src={`${BASE_IMAGE_URL}${movie.poster_path}`} alt={movie.title} />
-                        <h3>{movie.title}</h3>
+                        <h2>{movie.title}</h2>
                     </div>
                 ))}
             </div>

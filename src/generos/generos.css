@@ -54,7 +54,12 @@
   transform-origin: center center;
 }
 
-.movie-card h3 {
-  color: #000;
-  margin-top: 10px;
+.movie-card h2 {
+  color: #333; /* Cambié a un tono más oscuro para mejorar la legibilidad */
+  text-align: center;
+  margin: 0; /* Elimina el margen para un aspecto más limpio */
+  font-size: 1.5rem; /* Tamaño de fuente legible y proporcional */
+  font-weight: bold; /* Añade negrita para destacar */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  letter-spacing: 1px; /* Agrega un pequeño espaciado entre las letras */
 }

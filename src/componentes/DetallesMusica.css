@@ -19,14 +19,13 @@
 }
 
 .artist-card {
-  padding-top: 100px;
+  padding-top: 10px;
   width: 30%;
   margin: 10px;
   box-sizing: border-box;
   text-align: center;
   border-radius: 15px;
   background-color: #fff;
-  padding: 10px;
   position: relative;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
@@ -43,10 +42,21 @@
   border-radius: 15px;
 }
 
-.artist-card h2 {
-  color: #000;
-  margin-top: 10px;
+.artist-cards a {
+  display: block; /* Hace que el enlace ocupe todo el ancho del contenedor */
+  text-decoration: none; /* Elimina el subrayado del enlace si lo hay */
+  color: inherit; /* Usa el color de texto heredado */
 }
+
+.artist-card h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 18px; /* Tamaño de fuente ajustado para h2 */
+  color: #333;
+  margin-top: 10px; /* Espacio superior */
+  margin-bottom: 8px; /* Espacio inferior */
+  text-align: center;
+}
+
 
 /* Estilos para la barra de encabezado con el nombre del artista */
 .artist-header {

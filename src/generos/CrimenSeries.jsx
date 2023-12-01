@@ -39,7 +39,7 @@ function CrimeSeries() {
         {crimeSeries.map((serie) => (
           <div key={serie.id} className="movie-card" onClick={() => handleSeriesClick(serie.id)}>
             <img src={`${BASE_IMAGE_URL}${serie.poster_path}`} alt={serie.name} />
-            <h3>{serie.name}</h3>
+            <h2>{serie.name}</h2>
           </div>
         ))}
       </div>

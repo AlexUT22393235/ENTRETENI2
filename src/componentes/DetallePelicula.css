@@ -1,11 +1,17 @@
 .detalle-pelicula {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 40px;
   background-color: rgba(59, 153, 230, 0.395);
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+}
+
+.resenia{
+  text-align: justify;
+  padding-right: 10px;
+  line-height: 2;
 }
 
 .pelicula-imagen {

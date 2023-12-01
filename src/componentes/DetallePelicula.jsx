@@ -60,7 +60,7 @@ function DetallePeliculas() {
         </div>
         <div className="pelicula-detalles">
           <h1>{pelicula.title}</h1>
-          <p>{pelicula.overview}</p>
+          <p className='resenia'>{pelicula.overview}</p>
           <h3>Valoración:</h3> {pelicula.vote_average.toFixed(2)}%
           <h3>Fecha de lanzamiento:</h3> {pelicula.release_date}
           <h3>Duración:</h3> {pelicula.runtime} minutos
