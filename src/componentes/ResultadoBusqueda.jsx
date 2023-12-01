@@ -1,9 +1,11 @@
 // ResultadoBusqueda.jsx
 import React, {useEffect, useState} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import notFound from '../img/notFound.jpg'
 
 
-const ResultadoBusqueda = ({ mediaData, handleMediaClick, BASE_IMAGE_URL }) => {
+const ResultadoBusqueda = ({ mediaData, BASE_IMAGE_URL }) => {
+  console.log("mediaData:", mediaData);
     const navigate = useNavigate();
     const location = useLocation();
     const [isMounted, setIsMounted] = useState(true);
@@ -31,17 +33,41 @@ const ResultadoBusqueda = ({ mediaData, handleMediaClick, BASE_IMAGE_URL }) => {
       navigate(`/detalle/${id}`);
     };
 
-    return mediaData && mediaData.length > 0 ? (
-      <div className="movie-cards">
-        {mediaData.map((result) => (
-          <div key={result.id} className="movie-card" onClick={() => handleMediaClickDetalle(result.id)}>
-            <h2>{result.title || result.name}</h2>
-            <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
+    
+    return (
+      <div className="search-results-container">
+        {mediaData !== undefined ? (
+          mediaData.length > 0 ? (
+            <div className="movie-cards">
+              {mediaData.map((result) => (
+                <div key={result.id} className="movie-card" onClick={() => handleMediaClickDetalle(result.id)}>
+                  <h2>{result.title || result.name}</h2>
+                  <img src={`${BASE_IMAGE_URL}${result.poster_path}`} alt={result.title || result.name} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="no-results-message">
+              <div className='noEncontrado'>
+              <p>Lo sentimos, no encontramos el contenido para tu búsqueda.</p>
+              <p>Intenta nuevamente con otras palabras.</p>
+              </div>
+              
+              <div className='imagenNoEncontrado'>
+              <img src={notFound} alt="noEncontrado" />
+              </div>
+            </div>
+            
+          )
+        ) : (
+          <div className="el-indeseado">
+          
           </div>
-        ))}
+        )}
       </div>
-    ) : null; // Si no hay resultados o mediaData es undefined, devolver null
-
-};
+    );
+    
+    
+        }
 
 export default ResultadoBusqueda;

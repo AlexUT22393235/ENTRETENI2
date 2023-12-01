@@ -190,7 +190,7 @@ function Navbar() {
             </div>
             <div className="custom-dropdown">
               <Link to="/Peliculas">
-                <span className="custom-dropdown-label custom-button">Películas</span>
+                <span className="custom-dropdown-label custom-button" style={{ textDecoration: 'none' }}>Películas</span>
               </Link>
               <div className="custom-dropdown-content">
                 <ul>
@@ -240,7 +240,7 @@ function Navbar() {
             </div>
             <div className="custom-dropdown">
               <Link to='/Series'>
-                <span className="custom-dropdown-label custom-button">Series</span>
+                <span className="custom-dropdown-label custom-button "style={{ textDecoration: 'none' }}>Series</span>
               </Link>
               <div className="custom-dropdown-content">
                 <ul>
@@ -257,7 +257,7 @@ function Navbar() {
                     className="custom-button"
                     onMouseEnter={() => setSelectedCategory('Series Ciencia Ficción')}
                   >
-                    <Link to="/SciFiSeries">
+                    <Link to="/SciFiSeries" >
                       <span className="custom-button">Ficción</span>
                     </Link>
                   </li>

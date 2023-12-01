@@ -15,6 +15,7 @@
   width: 100%;
   max-width: 1200px;
   padding: 0 20px;
+  align-items: center;
 }
 
 .navbar-left {
@@ -30,33 +31,45 @@
 
 /* Estilos para la barra de búsqueda */
 .search-container {
-  border-radius: 100px;
   display: flex;
   align-items: center;
   margin-left: auto;
 }
 
-.search-input {
-  border-radius: 100px;
-  margin-right: 30px; /* Márgenes ajustados para una alineación más cercana */
+.search-input-container{
+  border-radius: 100                    px;
+  margin-right: 150px; /* Márgenes ajustados para una alineación más cercana */
+  margin-top:19px;
   padding: 10px;
   border: none;
   outline: none;
   width: 200px;
 }
 
+
 .search-icon {
   margin-right: 10px;
   color: #ccc;
   font-size: 20px;
-  border-radius: 60px;
+  border-radius: 200px;
 }
 
+
 /* Estilos para el nombre de usuario */
+
+.user-info{
+  margin-left: 60px;
+}
+
+.preferences-button{
+  margin-left: 85px;
+}
+
+
 .user-name {
   cursor: pointer;
   margin-right: 0; /* Sin margen a la derecha para una alineación más cercana */
-  color: #007bff;
+  color: #0a4584;
   font-weight: bold;
   font-size: 12px;
 }
@@ -142,11 +155,25 @@ color: #000;
   padding: 0;
 }
 
-.custom-dropdown-content li {
+.custom-dropdown-content li  {
   color: #fff;
   padding: 10px;
   text-align: center;
   cursor: pointer;
+  text-decoration: none;
+}
+
+/* Pa quitarle la raya a los elementos del dropdaun */
+.custom-dropdown .custom-dropdown-label,
+.custom-dropdown-content li a,
+.custom-dropdown-content li span {
+  text-decoration: none;
+}
+
+.custom-dropdown .custom-dropdown-label,
+.custom-dropdown-content > ul > li > a,
+.custom-dropdown-content > ul > li > span {
+  text-decoration: none;
 }
 
 .custom-dropdown:hover .custom-dropdown-label {
@@ -162,6 +189,7 @@ color: #000;
   cursor: pointer;
   margin-right: 60px;
   transition: color 0.3s;
+  list-style-type: none;
 }
 
 .custom-button:hover {

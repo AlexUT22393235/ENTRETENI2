@@ -50,6 +50,7 @@ function Home() {
     return () => clearTimeout(authenticationCheck);
   }, []);
   
+  
 
 
   useEffect(() => {

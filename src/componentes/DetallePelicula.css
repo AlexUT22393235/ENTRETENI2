@@ -164,3 +164,40 @@ iframe {
   width: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
   height: 70px; /* Ajusta el tamaño de la imagen según tus preferencias */
 }
+
+.no-results-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px; /* Ajusta el margen superior según tus necesidades */
+  margin-bottom: 50px;
+}
+
+.noEncontrado {
+  margin-bottom: 10px; /* Ajusta el margen inferior según tus necesidades */
+}
+
+.noEncontrado p {
+  font-size: large;
+  margin-bottom: 15px;
+}
+
+.imagenNoEncontrado img {
+  margin-top: 30px;
+  width: 350px; /* Ajusta el ancho de la imagen según tus necesidades */
+  height: auto; /* Mantiene la proporción original de la imagen */
+  margin-left:70px;
+}
+
+.no-results-message p {
+  margin: 10px 0;
+}
+
+
+
+
+.el-indeseado{
+  display: none;
+}
